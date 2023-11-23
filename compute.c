@@ -3,7 +3,7 @@
 
 int power(int base , int p );
 
-int computation(int a , int b , char x) {
+double computation(double a , double b , char x) {
 
   switch(x) {
   case '+':
@@ -16,7 +16,7 @@ int computation(int a , int b , char x) {
     if (b == 0 ) {
       return -1;
     }else{
-    return (double)a/b ;
+    return a/b ;
     }
   case '^':
     return power(a,b) ;
