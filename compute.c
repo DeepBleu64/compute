@@ -13,11 +13,15 @@ int computation(int a , int b , char x) {
   case 'x':
     return a * b ;
   case '/':
+    if (b == 0 ) {
+      return -1;
+    }else{
     return (double)a/b ;
+    }
   case '^':
-     int result = power(a,b);
-     return result ;
-   
+    return power(a,b) ;
+   default:
+    return -1 ;
 
   }
   return -1 ;
@@ -27,8 +31,8 @@ int computation(int a , int b , char x) {
 void printusage(){
 
 
-  printf("Usage eg: Val1 oprand Val1\n");
-  printf("Supported oprandnds [+,-,x,/,^]\n");
+  printf("Usage eg: Val1 operator Val2\n");
+  printf("Supported operators [+,-,x,/,^]\n");
 }
 
 
@@ -43,4 +47,14 @@ int power(int base , int p ){
   }
   return result ;
 
+}
+
+int isnum (char a) {
+
+
+  if(a >= '1' &&  a <= '9') {
+    return 1;
+  }else{
+    return 0 ;
+  }
 }
