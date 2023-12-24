@@ -49,12 +49,30 @@ int power(int base , int p ){
 
 }
 
-int isnum (char a) {
 
+int parsevalue(double x) {
 
-  if(a >= '1' &&  a <= '9') {
-    return 1;
-  }else{
-    return 0 ;
+  char s[MAX];
+  int breakouter = 0 ;
+
+  sprintf(s , "%f",x) ;
+
+  for(int i = 0 ; s[i] != '\0' && !breakouter ; i++) {
+
+    if(s[i] == '.') {
+      breakouter = 1 ;
+      for(int j = i+1 ; s[j] != '\0' ; j++) {
+
+	if(s[j] != '0') {
+
+	  return 1;
+	}
+
+      }
+    }
+
   }
+  
+  return 0 ;
+
 }
