@@ -1,7 +1,7 @@
 #include <stdio.h>
 #define MAX 100
 
-int power(int base , int p );
+double power(double base , double p );
 
 double computation(double a , double b , char x) {
 
@@ -24,7 +24,6 @@ double computation(double a , double b , char x) {
     return -1 ;
 
   }
-  return -1 ;
 }
 
 
@@ -36,10 +35,10 @@ void printusage(){
 }
 
 
-int power(int base , int p ){
+double power(double base , double p ){
 
   int i ;
-  int result = 1 ;
+  double result = 1 ;
   for(i = 0 ; i < p ; i++) {
 
     result *= base;
@@ -49,13 +48,12 @@ int power(int base , int p ){
 
 }
 
-
 int parsevalue(double x) {
 
   char s[MAX];
   int breakouter = 0 ;
 
-  sprintf(s , "%f",x) ;
+  sprintf(s,"%f",x) ;
 
   for(int i = 0 ; s[i] != '\0' && !breakouter ; i++) {
 
