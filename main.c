@@ -1,7 +1,8 @@
 #include<stdio.h>
+#include <stdbool.h>
 #define MAX_INT 2147483647
 //functions prototyps 
-double computation(double a ,double b,char x);
+bool computation(double a ,double b,char x,double *result);
 int parsevalue(double y);
 void printusage();
 int main(int argc , char *argv[]) {
@@ -13,8 +14,7 @@ int main(int argc , char *argv[]) {
   if(argc == 2 ) {
 
     if(sscanf(argv[1] , "%lf%c%lf" , &arg1,&arg3,&arg2) == 3){
-     result = computation(arg1,arg2,arg3);
-     if (result != -1) {
+      if (computation(arg1,arg2,arg3,&result)) {
        if(parsevalue(result) || result > MAX_INT) {
       printf("%lf\n",result);
        }else{
@@ -37,8 +37,7 @@ int main(int argc , char *argv[]) {
 
     if(sscanf(argv[1],"%lf" ,&arg1) == 1 && sscanf(argv[2],"%c",&arg3) == 1 && sscanf(argv[3] , "%lf",&arg2) == 1 ){
       
-     result = computation(arg1,arg2,arg3);
-    if (result != -1) {
+      if (computation(arg1,arg2,arg3,&result)) {
       if(parsevalue(result)){
        printf("%lf\n",result);
       }else {

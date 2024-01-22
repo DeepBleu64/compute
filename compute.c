@@ -1,27 +1,33 @@
 #include <stdio.h>
+#include <stdbool.h>
 #define MAX 100
 
 double power(double base , double p );
 
-double computation(double a , double b , char x) {
+bool computation(double a , double b , char x , double *result) {
 
   switch(x) {
   case '+':
-    return a + b ;
+      *result = a + b ;
+      return true ;
   case '-':
-    return a - b ;
+     *result =  a - b ;
+      return true ;
   case 'x':
-    return a * b ;
+      *result =  a * b ;
+      return true ;
   case '/':
     if (b == 0 ) {
-      return -1;
+      return false;
     }else{
-    return a/b ;
+     *result = a/b ;
+     return true ;
     }
   case '^':
-    return power(a,b) ;
+     *result =  power(a,b) ;
+     return true ; 
    default:
-    return -1 ;
+    return false ;
 
   }
 }
