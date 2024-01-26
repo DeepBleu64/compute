@@ -15,7 +15,7 @@ git clone https://github.com/DeepBleu64/compute && cd compute && sudo make insta
 
 ```sh
 sudo make uninstall 
-```sh
+```
 
 
 ## Example usage 
