@@ -18,7 +18,7 @@ sudo make uninstall
 ```
 
 
-## Example usage 
+## Usage example 
 
 
 ```sh

@@ -38,7 +38,7 @@ int main(int argc , char *argv[]) {
     if(sscanf(argv[1],"%lf" ,&arg1) == 1 && sscanf(argv[2],"%c",&arg3) == 1 && sscanf(argv[3] , "%lf",&arg2) == 1 ){
       
       if (computation(arg1,arg2,arg3,&result)) {
-      if(parsevalue(result)){
+	if(parsevalue(result) || result > MAX_INT){
        printf("%lf\n",result);
       }else {
 	 trunc = result ;
