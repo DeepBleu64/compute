@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdbool.h>
-#define MAX 100
+#define MAX 100 /* Maximum buffer size change as needed if you wish to parse  numbers whose digits > 100 */ 
 
 double power(double base , double p );
 
+int Check_num_digits(double x) ;
 bool computation(double a , double b , char x , double *result) {
 
   switch(x) {
@@ -56,6 +57,9 @@ double power(double base , double p ){
 
 int parsevalue(double x) {
 
+  /* Prevents bufferoverflow */
+  if(Check_num_digits(x))return 0;
+
   char s[MAX];
   int breakouter = 0 ;
 
@@ -79,4 +83,18 @@ int parsevalue(double x) {
   
   return 0 ;
 
+}
+
+int Check_num_digits(double x) {
+
+  int i ;
+  int count = 0 ;                      
+  for (i = 0 ; i < x ; i++) {
+    count++ ;
+    if(count >= 99) {
+      return 1 ;
+
+    }
+  }
+  return 0 ;
 }
