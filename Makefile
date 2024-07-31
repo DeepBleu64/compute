@@ -7,7 +7,7 @@ DIR = /usr/bin
 
 
 install:
-	gcc $(SRC) -o $(DIR)/$(NAME)
+	gcc $(SRC) -lm -o $(DIR)/$(NAME)
 
 
 uninstall:

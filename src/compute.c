@@ -1,8 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 #include <stdbool.h>
+
 #define MAX 100 /* Maximum buffer size change as needed if you wish to parse  numbers whose digits > 100 */ 
 
-double power(double base , double p );
+//double power(double base , double p );
 
 int Check_num_digits(double x) ;
 bool computation(double a , double b , char x , double *result) {
@@ -14,23 +17,32 @@ bool computation(double a , double b , char x , double *result) {
   case '-':
      *result =  a - b ;
       return true ;
-  case 'x':
+  case '*':
       *result =  a * b ;
       return true ;
   case '/':
     if (b == 0 ) {
-      return false;
-    }else{
+      
+      fprintf(stderr,"Can't divide by zero\n");
+      exit(1);
+      
+    } else {
      *result = a/b ;
      return true ;
+     
     }
   case '^':
-     *result =  power(a,b) ;
-     return true ; 
+     *result =  pow(a,b);
+     return true ;
+     
    default:
-    return false ;
+
+     fprintf(stderr,"Incorrect operator\n");
+     exit(1);
+     
 
   }
+  
 }
 
 
@@ -38,7 +50,8 @@ void printusage(){
 
 
   printf("Usage eg: Val1 operator Val2\n");
-  printf("Supported operators [+,-,x,/,^]\n");
+  printf("Supported operators [+,-,*,/,^]\n");
+  
 }
 
 
