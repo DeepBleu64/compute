@@ -283,7 +283,7 @@ char *reformat(char *s) {
     } else if(isdigit(*s) && isop(*(s + 1)) ||
 	      isop(*s) && isdigit(*(s + 1)))  {
 
-      count += 2 ;
+      count += 3 ;
       output = realloc(output,count * sizeof(char));
       output[i++] = *s;
       output[i++] = ' ';
@@ -300,7 +300,10 @@ char *reformat(char *s) {
     }
     
   }
-
+  
+  output = realloc(output,count * sizeof(char));
+  output[i] = '\0' ;
+  
   return output ;
 }
 

@@ -18,7 +18,7 @@ int main(int argc , char *argv[]) {
   if(argc == 2 ) {
 
     result = input(argv[1]);
-    printf("%.4lf\n",result);
+    printf("%g\n",result);
 
 
 
@@ -29,7 +29,7 @@ int main(int argc , char *argv[]) {
       
       computation(arg1,arg2,arg3,&result);
 
-      printf("%.4lf\n",result);
+      printf("%g\n",result);
             
 
     }
