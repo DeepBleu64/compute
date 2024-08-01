@@ -283,7 +283,7 @@ char *reformat(char *s) {
     } else if(isdigit(*s) && isop(*(s + 1)) ||
 	      isop(*s) && isdigit(*(s + 1)))  {
 
-      count += 3 ;
+      count += 2 ;
       output = realloc(output,count * sizeof(char));
       output[i++] = *s;
       output[i++] = ' ';
