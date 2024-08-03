@@ -6,22 +6,32 @@
 
 bool computation(double a , double b , char x , double *result) ;
 
+enum assoc {
+
+  ASSOC_NONE = 0 ,
+  ASSOC_LEFT     ,
+  ASSOC_RIGHT    ,
+  
+};
+
 typedef struct Prece {
 
 
   char op ;
   int prec ;
-  
+  int assoc;
 
 }Prece;
 
 Prece p[] = {
 
-  '+' , 0 ,
-  '-' , 0 ,
-  '*' , 1 ,
-  '/' , 1 ,
-  '^' , 2 ,
+  '+' , 0 , ASSOC_LEFT  ,
+  '-' , 0 , ASSOC_LEFT  ,
+  '*' , 1 , ASSOC_LEFT  ,
+  '/' , 1 , ASSOC_LEFT  ,
+  '^' , 2 , ASSOC_RIGHT ,
+  ')' , 2 , ASSOC_NONE  ,
+  '(' , 2 , ASSOC_NONE  ,
 };
 
 
@@ -41,16 +51,33 @@ int isop(int c) {
   return 0;
 }
 
-int find_pre(char s) {
+int *find_pre_asso(char s) {
 
+  int *ele = malloc(2 * sizeof(int));
+  
+  if(ele == NULL) {
+    
+    fprintf(stderr,"Failed to allocate memory\n");
+    exit(1);
+    
+  }
+  
   int size = sizeof(p) / sizeof(p[0]) ;
-
+  
   int i ;
   for(i = 0 ; i < size ; ++i) {
 
-    if(s == p[i].op)return p[i].prec;
+    if(s == p[i].op) {
+      
+      ele[0] = p[i].prec ;
+      ele[1] = p[i].assoc;
+
+      return ele;
+
+      }
+    
   }
-  return -1;
+  return NULL;
 }
 
 
@@ -82,7 +109,8 @@ void infix_to_postfix(char *s) {
 
       if(op_pointer != -1) {
 
-	while(should_pop(op_stack[op_pointer],*s)) {
+	while(op_pointer != -1 &&
+	      should_pop(op_stack[op_pointer],*s)) {
 
 	  push("out_stack",op_stack[op_pointer]);
 	  pop("op_stack");
@@ -125,7 +153,6 @@ int check_input(char *s) {
   int len = strlen(s);
   left_b = right_b =  0 ;
   bool check_op = false ;
-  
   if(len > MAX) return 0 ;
 
   if(isop(s[0]) && s[0] != '-' || isop(s[len - 1])) return 0;
@@ -311,15 +338,17 @@ double input(char *s) {
 
   double output = 0;
   char *reformated = NULL ;
+  char *str = NULL ;
+  
   if(check_input(s)) {
-    
+
   reformated = reformat(s);
-  //  printf("%s\n",reformated);
+
   infix_to_postfix(reformated);
-  //printf("%s\n",out_stack);
 
   output = eval_expression(out_stack);
   free(reformated);
+  
   }else {
 
     fprintf(stderr,"Your input contains something that's not permissible\n");
@@ -328,3 +357,4 @@ double input(char *s) {
   }
   return output ;
 }
+

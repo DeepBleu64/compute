@@ -1,6 +1,7 @@
 #include "stack.h"
 #include "convert_expression.h"
 #include <string.h>
+#include <stdlib.h>
 
 char op_stack[MAX];
 char out_stack[MAX];
@@ -69,6 +70,26 @@ double pop_double() {
 
 int should_pop(char c_in , char c_coming) {
 
-  return(find_pre(c_in) < find_pre(c_coming) ? 0 : 1);
+  int *arr1 = find_pre_asso(c_in);
+  int *arr2 = find_pre_asso(c_coming);
+
+  /* Should not pop if precedence of scanned op is greater than precedence of op in stack || op scanned  is  right-associative  ||
+   op in stack is non-associative*/ 
+  
+  if(arr1[0] < arr2[0] || arr2[1] == 2 ||
+     arr1[1] == 0) {
+
+    free(arr1);
+    free(arr2);
+
+    return 0;
+
+  } 
+
+  free(arr1);
+  free(arr2);
+
+  return 1;
+
 }
 

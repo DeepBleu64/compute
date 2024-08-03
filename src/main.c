@@ -18,7 +18,7 @@ int main(int argc , char *argv[]) {
   if(argc == 2 ) {
 
     result = input(argv[1]);
-    printf("%g\n",result);
+    printf("result: %g\n",result);
 
 
 
