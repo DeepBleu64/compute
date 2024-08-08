@@ -2,7 +2,7 @@
 #include "convert_expression.h"
 #include <stdbool.h>
 
-#define MAX_INT 2147483647
+
 
 //functions prototyps
 
@@ -17,8 +17,9 @@ int main(int argc , char *argv[]) {
   
   if(argc == 2 ) {
 
+        
     result = input(argv[1]);
-    printf("result: %g\n",result);
+    printf("%g\n",result);
 
 
 
