@@ -3,7 +3,7 @@ NAME = compute
 VERSION = 0.1
 
 SRC = src/*.c
-DIR = /usr/bin
+DIR = /usr/local/bin
 
 
 install:
