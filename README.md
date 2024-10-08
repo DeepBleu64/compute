@@ -41,5 +41,14 @@ I found myself for numerous of times wanting to do a quick calculation , so i de
 
 ## Additional notes 
 
-For multiplcation using 3 arguments don't forget to escape the '*' sign to avoid shell expansion .
+* For multiplication using 3 arguments don't forget to escape the '*' sign to avoid shell expansion.
+
+* Due to limitation in the infix-postfix conversion method ,there might be some ambiguity that arises from more complex expressions (particularly ones involving unary minus), to eliminate the possibility of ambiguity that might arise use parentheses to convey your intent.
+for example an expression such as 
+```sh
+-2 + 3 * (5 - -1) - (10 / 2) + -3 would give -32 which is false however if you add parentheses as in 
+-2 + (3 * (5 - -1)) - (10 / 2) + -3 you would get 8 which's the correct result.
+``` 
+
+	
 

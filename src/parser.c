@@ -124,7 +124,9 @@ char  *deal_with_op(char *s , char *start) {
 
 
     
-    if(*(s + 1) == '(') ins = 'u';     /* Apply unary minus on the whole expression  in the case of -(A+B) for instance */
+    if(pos == 0 && *(s + 1) == '(' ||
+       pos > 0 && *(s + 1) == '(' &&
+       pos > 0 && *(s - 1) == ')') ins = 'u';     /* Apply unary minus on the whole expression  in the case of -(A+B) for instance */
 
     else if(pos > 0  && ISOP(*(s - 1)) || /* Otherwise if a unary minus is found that's not in the form of -(A+B) apply unary minus on that term only */
 	    pos > 0 && *(s - 1) == '(' ||
@@ -197,8 +199,8 @@ char  *deal_with_op(char *s , char *start) {
 
 int check_input(char *s) {
 
-  int left_b , right_b ,len;
-  left_b = right_b =  0 ;
+  int brackets,len;
+  brackets =  0 ;
 
   
   if(s == NULL || (len = strlen(s)) > MAX
@@ -209,9 +211,9 @@ int check_input(char *s) {
      
   while(*s != '\0') {
     
-    if(*s == '(')left_b++;
+    if(*s == '(')brackets++;
 
-    else if(*s == ')')right_b++;
+    else if(*s == ')')brackets--;
 
 
 
@@ -235,7 +237,7 @@ int check_input(char *s) {
     
   }
 
-  if(left_b != right_b) {
+  if(brackets != 0) {
 
     fprintf(stderr,"You haven't enclosed all brackets\n");
 

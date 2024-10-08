@@ -241,11 +241,11 @@ double input(char *s) {
   if(check_input(reformated)) {
 
     
-    // printf("%s\n",reformated);
+    //printf("%s\n",reformated);
   
   
   infix_to_postfix(reformated);
-  // printf("%s\n",out_stack);
+  //  printf("%s\n",out_stack);
   output = eval_expression(out_stack);
   free(reformated);
   
