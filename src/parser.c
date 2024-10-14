@@ -230,7 +230,7 @@ int check_input(char *s) {
         ISDIGIT(*(s + 1))  ) {
       
       ++s;
-      continue ;
+
       
       
     }else return 0 ;

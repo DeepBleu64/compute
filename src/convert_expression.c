@@ -245,7 +245,7 @@ double input(char *s) {
   
   
   infix_to_postfix(reformated);
-  //  printf("%s\n",out_stack);
+  // printf("%s\n",out_stack);
   output = eval_expression(out_stack);
   free(reformated);
   
