@@ -175,7 +175,7 @@ char  *deal_with_op(char *s , char *start) {
     
   }
 
-    if(op_pointer != -1) {
+
       
 	while(op_pointer != -1 &&
 	      should_pop(op_stack[op_pointer],ins)) {
@@ -186,7 +186,7 @@ char  *deal_with_op(char *s , char *start) {
 	}
 
 
-      }
+
   
         push("op_stack",ins);
 
