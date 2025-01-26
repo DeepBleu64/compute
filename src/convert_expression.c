@@ -31,10 +31,11 @@ void infix_to_postfix(char *s) {
 	push("out_stack",op_stack[op_pointer]);
 	pop("op_stack");
 	
+	
       }
       
       pop("op_stack");
-      
+      push("out_stack",'#');
     }
 
     else if(ISOP(*s))  {
@@ -67,7 +68,7 @@ void infix_to_postfix(char *s) {
 
   }
   
-  while(op_pointer != -1) {
+  while(op_pointer != STACK_BOTTOM) {
 
     push("out_stack",op_stack[op_pointer]);
     pop("op_stack");
@@ -241,11 +242,11 @@ double input(char *s) {
   if(check_input(reformated)) {
 
     
-    //printf("%s\n",reformated);
+ //   printf("%s\n",reformated);
   
   
   infix_to_postfix(reformated);
-  // printf("%s\n",out_stack);
+  //  printf("%s\n",out_stack);
   output = eval_expression(out_stack);
   free(reformated);
   

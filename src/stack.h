@@ -3,7 +3,7 @@
 #define STACK_H
 
 #define MAX 100
-
+#define STACK_BOTTOM -1
 
 extern char op_stack[MAX];
 extern char out_stack[MAX];

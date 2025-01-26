@@ -7,9 +7,9 @@ char op_stack[MAX];
 char out_stack[MAX];
 double eval_stack[MAX];
 
-int op_pointer  = -1;
-int out_pointer = -1;
-int eval_pointer = -1;
+int op_pointer   =  STACK_BOTTOM;
+int out_pointer  =  STACK_BOTTOM;
+int eval_pointer =  STACK_BOTTOM;
 
 void push(char *stack_name , char item) {
 
@@ -35,13 +35,13 @@ void pop(char *stack_name) {
 
   if(strcmp(stack_name,"op_stack") == 0) {
 
-    if(op_pointer == -1)return;
+    if(op_pointer == STACK_BOTTOM)return;
 
     op_stack[--op_pointer] ;
 
   }else if(strcmp(stack_name,"out_stack") == 0) {
 
-    if(out_pointer == -1)return ;
+    if(out_pointer == STACK_BOTTOM)return ;
 
     out_stack[--out_pointer];
     
@@ -62,7 +62,7 @@ void push_double(double item) {
 
 double pop_double() {
 
-  if(eval_pointer == -1)return 0.0 ;
+  if(eval_pointer == STACK_BOTTOM)return 0.0 ;
 
   return eval_stack[eval_pointer--];
 
